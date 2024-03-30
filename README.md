@@ -15,7 +15,7 @@ To keep costs down, restart conversations when topics change with the !thanks co
 5. run python OpenAI-API-Terminal.py
 
 ## Features
-💬 Ask something and press enter to chat.
+💬 Ask something and press enter to chat. Conversation history is maintained until you wipe it with !thanks.
 
 ⌨️ !code - Enter Multi-line input mode. Good for providing code samples.
 
