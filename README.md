@@ -8,11 +8,11 @@ Costing is estimated and shown at the bottom of every response.
 To keep costs down, restart conversations when topics change with the !thanks command.
 
 ## Requirements
-1 install python3.10 at least\n
-2 run the following: pip install openai tiktoken\n
-3 fill in your own API key within the code\n
-4 modify the OpenAI variable within the code to change identity if you wish\n
-5 run python OpenAI-API-Terminal.py\n
+1. install python3.10 at least
+2. run the following: pip install openai tiktoken
+3. fill in your own API key within the code
+4. modify the OpenAI variable within the code to change identity if you wish
+5. run python OpenAI-API-Terminal.py
 
 ## Features
 💬 Ask something and press enter to chat.
