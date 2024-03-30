@@ -2,6 +2,7 @@
 # host on your own computer
 # before running:
 # 1 install missing packages - pip install openai tiktoken
+# 1 install missing packages - pip install tiktoken, openai==0.27.0 #yes it's an old version but works with this streaming method
 # 2 enter your own api key below
 # 3 modify the OpenAI variable if you wish to change your bots identity
 
