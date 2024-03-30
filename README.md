@@ -16,9 +16,13 @@ To keep costs down, restart conversations when topics change with the !thanks co
 
 ## Features
 💬 Ask something and press enter to chat.
+
 ⌨️ !code - Enter Multi-line input mode. Good for providing code samples.
+
 🧠 !thanks -- Clear chat history
+
 🔁 !gpt3 or !gpt4 -- Model selection
+
 👋 !exit -- Quit
 
 ## Screenshots
