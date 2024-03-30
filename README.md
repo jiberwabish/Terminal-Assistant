@@ -1,7 +1,3 @@
-# Hilariously broken immediately, 'openai' package updated recently and broke it completely
-Working on it now...
-
-
 # OpenAI-API-Terminal-Chatbot
 An OpenAI powered chatbot, powered by your own API key. Simple. Streaming. 
 
@@ -13,7 +9,7 @@ To keep costs down, restart conversations when topics change with the !thanks co
 
 ## Requirements
 1. install python3.10 at least
-2. run the following: pip install openai tiktoken
+2. run the following: pip install tiktoken, openai==0.27.0 #yes it's an old version but works with this streaming method
 3. fill in your own API key within the code
 4. modify the OpenAI variable within the code to change identity if you wish
 5. run python OpenAI-API-Terminal.py
