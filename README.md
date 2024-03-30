@@ -1,3 +1,7 @@
+# Hilariously broken immediately, 'openai' package updated recently and broke it completely
+Working on it now...
+
+
 # OpenAI-API-Terminal-Chatbot
 An OpenAI powered chatbot, powered by your own API key. Simple. Streaming. 
 
