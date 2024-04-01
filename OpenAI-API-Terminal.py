@@ -1,6 +1,6 @@
 # jiberwabish 2024 - OpenAI API Chatbot - Terminal version 
 # host on your own computer
-# before running:
+# before running
 # 1 install missing packages - pip install tiktoken, openai (make sure you get the latest openai or calls wont work)
 # 2 enter your own api key in your environment's OPEN_AI_KEY variable, new api doesn't accept api strings
 # 3 modify the 'idenity' variable if you wish to change your bots identity
