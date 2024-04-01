@@ -10,7 +10,8 @@ To keep costs down, restart conversations when topics change with the !thanks co
 ## Requirements
 1. install python3.10 at least
 2. run the following: `pip install openai tiktoken`
-3. fill in your own API within your envrionment variable named OPEN_AI_KEY
+3. fill in your own API within your envrionment variable 
+`setx OPEN_AI_KEY "your key here"`
 4. modify the 'identity' variable within the code to change identity if you wish
 5. run `python OpenAI-API-Terminal.py`
 
