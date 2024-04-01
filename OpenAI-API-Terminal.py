@@ -1,32 +1,34 @@
 # jiberwabish 2024 - OpenAI API Chatbot - Terminal version 
 # host on your own computer
 # before running:
-# 1 install missing packages - pip install tiktoken, openai==0.27.0 #yes it's an old version but works with this streaming method
-# 2 enter your own api key below
-# 3 modify the OpenAI variable if you wish to change your bots identity
+# 1 install missing packages - pip install tiktoken, openai (make sure you get the latest openai or calls wont work)
+# 2 enter your own api key in your environment's OPEN_AI_KEY variable, new api doesn't accept api strings
+# 3 modify the 'idenity' variable if you wish to change your bots identity
 
-import openai, time, tiktoken, os
+import time, tiktoken, os, openai
+from openai import OpenAI
 
-openai.api_key = 'your key here'
+client = OpenAI(api_key=os.environ['OPEN_AI_KEY'])
 
 #variable I use as a pre-prompt to provide the bot a personality
-OpenAI = {"role": "system", "content": "You are a helpful and friendly chat bot. You are a programming expert of all programming languages. Respond to my message as effectively as you can. Use Markdown formatting and ensure code is in codeblocks."}
-identity = OpenAI
+identity = {"role": "system", "content": "You are a helpful and friendly chat bot. You are a programming expert of all programming languages. Respond to my message as effectively as you can. Use Markdown formatting and ensure code is in codeblocks."}
 history = [identity] #fill history with identity to start the conversation
 costing = "placeholder"
 model = "gpt-3.5-turbo-0125" #set gpt3 as default model
 banner = f"\n\033[94mOpenAI\x1b[0m is now online in {model} mode.\n\x1b[90m💬 Ask something and press enter to chat.\n⌨️ !code - Enter Multi-line input mode. Good for providing code samples.\n🧠 !thanks -- Clear chat history\n🔁 !gpt3 or !gpt4 -- Model selection\n👋 !exit -- Quit\x1b[0m"
 
 # Set up tokenizer
-#declare global totals
-modelTemp = 0.5
+#declare global totals/variables
+modelTemp = 0.5 # between 0 and 2, higher is more creative. In my experience you'd never want to go above 1.
 totalCost = 0
 totalTokens = 0
 model_max_tokens = 16000
 num_tokens = 0
 prompt_token_count = 0
 
-os.system('cls')
+#clear screen 
+os.system('cls' if os.name == 'nt' else 'clear')
+
 #banner at the top of the terminal
 print(banner)
 
@@ -67,25 +69,28 @@ def num_tokens_from_messages(messages, model="gpt-3.5-turbo-0301"):
         raise NotImplementedError(f"""num_tokens_from_messages() is not presently implemented for model {model}.
 See https://github.com/openai/openai-python/blob/main/chatml.md for information on how messages are converted to tokens.""")
 
-def stream_openai(prompt,history):
+def stream_openai(prompt, history):
     global num_tokens, prompt_token_count, model
     fullMessage = ""
     user_response_obj = {"role": "user", "content": prompt}
 
     history.append(user_response_obj)
     prompt_token_count = num_tokens_from_messages(history)
-    
-    #send the first message that will continually be editted
-    response = openai.ChatCompletion.create(model=model, messages=history, stream=True, temperature=modelTemp, request_timeout=240)
-    # Iterate over the response stream
-    print("\n\033[94mOpenAI\033[0m ")
-    for chunk in response:
-        chunk_message = chunk['choices'][0]['delta']
-        if 'content' in chunk_message:
-            print(chunk_message['content'], end='')
-            fullMessage += chunk_message['content']
-        elif chunk["choices"][0]["finish_reason"] != None:
-            break
+
+    client = OpenAI()
+    # note this is the new way to call chat completion endpoint, make sure you have the latest openai python package
+    response = client.chat.completions.create(model=model, messages=history, temperature=modelTemp, stream=True)
+
+    print("\n\033[94mOpenAI\x1b[0m")
+    fullMessage = "" # for collecting full message to feed into history
+    for data in response:
+        for choice in data.choices:
+            # Check if 'choice.delta.content' exists and is not None
+            if choice.delta and choice.delta.content:
+                chunk = choice.delta.content
+                # Using end='' to avoid adding a new line after each print
+                print(chunk, end='')
+                fullMessage += chunk
     history.append({"role": "assistant", "content": fullMessage})
     return fullMessage
 
