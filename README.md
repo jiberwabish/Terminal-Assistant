@@ -8,11 +8,11 @@ Costing is estimated and shown at the bottom of every response.
 To keep costs down, restart conversations when topics change with the !thanks command.
 
 ## Requirements
-1 install python3.10 at least
-2 run the following: `pip install openai tiktoken`
-3 fill in your own API within your envrionment variable named OPEN_AI_KEY
-4 modify the 'identity' variable within the code to change identity if you wish
-5 run `python OpenAI-API-Terminal.py`
+1. install python3.10 at least
+2. run the following: `pip install openai tiktoken`
+3. fill in your own API within your envrionment variable named OPEN_AI_KEY
+4. modify the 'identity' variable within the code to change identity if you wish
+5. run `python OpenAI-API-Terminal.py`
 
 NOTE: This bot uses the newest OpenAI python package and therefore the newer api call. If it's not working for you, you may have had openai installed already and need to update: `pip install upgrade openai`
 
