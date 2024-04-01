@@ -104,7 +104,7 @@ while True:
     user_input = input("\n\x1b[32mYou\x1b[0m \n")
     if user_input == '!thanks':
         resetConvoHistory()
-        os.system("cls")
+        os.system('cls' if os.name == 'nt' else 'clear')
         print(banner)
         print(f"\n\x1b[90mConversation history cleared. -- Model: {model}\x1b[0m")
         continue
