@@ -65,7 +65,9 @@ class TerminalGptBot:
         self.config.costing = f"🪙 ${self.config.totalCost:.4f} - 🎟️ {self.config.totalTokens} - 🤖 {self.config.model}"
 
     def num_tokens_from_messages(self, messages):
-        model = self.config.model
+        # must hardcode this to an old model, simply for token couting purposes:
+        #model = self.config.model
+        model = "gpt-3.5-turbo-0301"
         try:
             encoding = tiktoken.encoding_for_model(model)
         except KeyError:
